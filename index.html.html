@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#10100d">
+<title>Para ti, flaquita 🌻</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{
+  background:#0d0d0b;
+  color:#fffdf5;
+  font-family:Poppins,sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#scene{
+  position:relative;
+  width:100%;
+  height:100%;
+  max-width:520px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(244,194,56,.12), transparent 32%),
+    linear-gradient(160deg,#171711 0%,#090908 100%);
+}
+
+.stars{position:absolute;inset:0;pointer-events:none}
+.star{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:#fff8c8;opacity:.35;
+  animation:twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle{50%{opacity:.9;transform:scale(1.8)}}
+
+.screen{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:28px;
+  transition:opacity 1s ease, transform 1s ease;
+}
+.hidden{opacity:0;pointer-events:none;transform:translateY(18px)}
+
+.kicker{
+  font-size:11px;letter-spacing:4px;text-transform:uppercase;
+  color:#d8b94a;margin-bottom:20px;
+}
+h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(44px,13vw,68px);
+  font-weight:500;text-align:center;line-height:.95;
+}
+.subtitle{
+  margin-top:18px;max-width:330px;text-align:center;
+  color:#c7c5b9;font-size:13px;line-height:1.8;
+}
+
+button{
+  margin-top:34px;border:1px solid rgba(244,208,91,.55);
+  background:rgba(244,208,91,.08);color:#f8e7a0;
+  padding:13px 27px;border-radius:999px;
+  font:400 12px Poppins,sans-serif;letter-spacing:1px;
+  cursor:pointer;transition:.3s;
+}
+button:hover{background:rgba(244,208,91,.18);transform:translateY(-2px)}
+button:active{transform:scale(.96)}
+
+.flower{
+  position:absolute;
+  bottom:-30px;
+  left:50%;
+  transform:translateX(-50%) scale(.5);
+  opacity:0;
+  transition:2.2s cubic-bezier(.2,.8,.2,1);
+}
+.flower.show{bottom:12%;transform:translateX(-50%) scale(1);opacity:1}
+
+.stem{
+  width:5px;height:240px;background:linear-gradient(#47713b,#203d20);
+  margin:auto;border-radius:5px;
+}
+.leaf{
+  position:absolute;width:75px;height:30px;background:#3c6634;
+  border-radius:100% 0 100% 0;
+}
+.leaf.left{left:-65px;bottom:80px;transform:rotate(-22deg)}
+.leaf.right{right:-65px;bottom:125px;transform:scaleX(-1) rotate(-22deg)}
+
+.head{
+  position:absolute;width:125px;height:125px;left:50%;top:-105px;
+  transform:translateX(-50%);
+  animation:sway 5s ease-in-out infinite;
+}
+@keyframes sway{50%{transform:translateX(-50%) rotate(4deg)}}
+
+.petal{
+  position:absolute;width:54px;height:78px;
+  background:linear-gradient(#ffe96b,#e7ad18);
+  border-radius:55% 55% 45% 45%;
+  left:50%;top:50%;transform-origin:50% 90%;
+  box-shadow:0 0 18px rgba(255,210,50,.13);
+}
+.p1{transform:translate(-50%,-82%) rotate(0)}
+.p2{transform:translate(-50%,-82%) rotate(45deg)}
+.p3{transform:translate(-50%,-82%) rotate(90deg)}
+.p4{transform:translate(-50%,-82%) rotate(135deg)}
+.p5{transform:translate(-50%,-82%) rotate(180deg)}
+.p6{transform:translate(-50%,-82%) rotate(225deg)}
+.p7{transform:translate(-50%,-82%) rotate(270deg)}
+.p8{transform:translate(-50%,-82%) rotate(315deg)}
+.center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:43px;height:43px;border-radius:50%;
+  background:radial-gradient(circle,#6d4512,#382309);
+  box-shadow:0 0 20px rgba(255,201,54,.3);
+}
+
+.message{
+  position:absolute;inset:0;display:flex;align-items:flex-start;
+  justify-content:center;text-align:center;padding:58px 30px 30px;
+  pointer-events:none;opacity:0;transition:1.2s;
+}
+.message.show{opacity:1}
+.card{
+  max-width:370px;background:rgba(12,12,9,.72);
+  border:1px solid rgba(241,207,90,.16);
+  backdrop-filter:blur(7px);padding:28px 24px;border-radius:24px;
+}
+.card .tiny{font-size:10px;letter-spacing:3px;color:#d9b849;text-transform:uppercase}
+.card h2{
+  font-family:"Cormorant Garamond",serif;font-size:35px;font-weight:500;
+  margin:9px 0 15px;
+}
+.card p{font-size:13px;line-height:1.9;color:#d4d2c6}
+.signature{margin-top:18px;color:#f0d56b;font-family:"Cormorant Garamond",serif;font-size:22px}
+
+.petal-fall{
+  position:absolute;top:-20px;width:8px;height:12px;
+  background:#f0c632;border-radius:100% 0 100% 0;
+  opacity:.7;animation:fall linear infinite;pointer-events:none;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(420deg);opacity:0}
+}
+
+.tap{
+  position:absolute;bottom:22px;font-size:10px;color:#77766d;
+  letter-spacing:1px;opacity:0;transition:1s;
+}
+.tap.show{opacity:1}
+</style>
+</head>
+
+<body>
+<div id="scene">
+  <div class="stars" id="stars"></div>
+
+  <section class="screen" id="intro">
+    <div class="kicker">21 · 09 · 2026</div>
+    <h1>Un pequeño<br>detalle para ti</h1>
+    <div class="subtitle">
+      Porque a veces no hace falta una gran ocasión<br>
+      para regalarle algo bonito a alguien.
+    </div>
+    <button id="open">Abrir 🌻</button>
+  </section>
+
+  <section class="screen hidden" id="garden">
+    <div class="flower" id="flower">
+      <div class="head">
+        <div class="petal p1"></div><div class="petal p2"></div>
+        <div class="petal p3"></div><div class="petal p4"></div>
+        <div class="petal p5"></div><div class="petal p6"></div>
+        <div class="petal p7"></div><div class="petal p8"></div>
+        <div class="center"></div>
+      </div>
+      <div class="stem"></div>
+      <div class="leaf left"></div>
+      <div class="leaf right"></div>
+    </div>
+
+    <div class="message" id="message">
+      <div class="card">
+        <div class="tiny">Para ti, flaquita 🌻</div>
+        <p>
+		  Hoy quise obsequiarte un pequeño presente.  
+          Para ser la primera ocasión en que doy flores  
+          amarillas, me alegra enormemente que tú  
+          hayas sido la primera mujer a quien se las entregué.
+        </p>
+        <p style="margin-top:12px">
+          Espero que hoy sonrías mucho y que recuerdes
+          lo capaz que eres.
+        </p>
+        <div class="signature">Con cariño, Yop 🤍</div>
+      </div>
+    </div>
+
+    <div class="tap" id="tap">toca la pantalla para hacer aparecer más flores ✨</div>
+  </section>
+</div>
+
+<script>
+const stars=document.getElementById('stars');
+for(let i=0;i<55;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  s.style.animationDelay=(Math.random()*4)+'s';
+  stars.appendChild(s);
+}
+
+function petals(){
+  for(let i=0;i<24;i++){
+    const p=document.createElement('div');
+    p.className='petal-fall';
+    p.style.left=Math.random()*100+'%';
+    p.style.animationDuration=(5+Math.random()*7)+'s';
+    p.style.animationDelay=(Math.random()*5)+'s';
+    p.style.transform='rotate('+(Math.random()*360)+'deg)';
+    document.getElementById('scene').appendChild(p);
+  }
+}
+
+document.getElementById('open').addEventListener('click',()=>{
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('garden').classList.remove('hidden');
+
+  setTimeout(()=>{
+    document.getElementById('flower').classList.add('show');
+  },350);
+
+  setTimeout(()=>{
+    document.getElementById('message').classList.add('show');
+    document.getElementById('tap').classList.add('show');
+    petals();
+  },1800);
+});
+
+document.getElementById('garden').addEventListener('click',(e)=>{
+  if(e.target.tagName==='BUTTON')return;
+  const f=document.createElement('div');
+  f.className='petal-fall';
+  f.style.left=(35+Math.random()*30)+'%';
+  f.style.animationDuration='4s';
+  document.getElementById('scene').appendChild(f);
+});
+</script>
+</body>
+</html>
